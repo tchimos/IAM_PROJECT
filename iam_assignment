@@ -1,0 +1,33 @@
+i#!/bin/zsh
+#author : Christian Tchimi
+#creation date : 08/31/2022
+#last modified : 08/31/2022
+#script description : this a IAM practice script
+#script usage : this is for policy,user and group creation
+echo
+echo
+echo
+aws iam create-group --group-name test1_policy
+sleep 6
+echo
+echo
+aws iam create-user --user-name christian1
+sleep 6
+echo
+echo
+aws iam create-login-profile --user-name christian1 --password Thisisatest123! --password-reset-required
+sleep 6
+echo
+echo 
+aws iam add-user-to-group --user-name christian1: --group-name test1_policy
+sleep 6
+echo
+echo
+touch policy1
+echo
+echo
+aws iam create-policy --policy-name ReadOnlyAccess --policy-document file://policy1
+sleep 6
+echo
+echo
+aws iam attach-group-policy --policy-arn arn:aws:iam:aws:policy/ReadOnlyAccess --group-name test1_policy
